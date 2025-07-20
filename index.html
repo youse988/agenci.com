@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agence Web - Création de Sites Internet Modernes</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background: #f7f7f7; color: #222; }
+    header { background: #222; color: #fff; }
+    .navbar { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 1em 2em; position: sticky; top: 0; background: #222; z-index: 100; box-shadow: 0 2px 16px #0002; min-height: 64px; }
+    .logo { font-size: 1.7em; font-weight: bold; color: #ff6a00; text-decoration: none; letter-spacing: 2px; margin-right: 2em; }
+    .nav-links { list-style: none; display: flex; gap: 1.5em; margin: 0; padding: 0; align-items: center; }
+    .nav-links li a { color: #fff; text-decoration: none; font-weight: 500; transition: color 0.2s, background 0.2s, box-shadow 0.2s; padding: 0.5em 1.2em; border-radius: 12px; position: relative; z-index: 1; }
+    .nav-links li a:hover, .nav-links li a:focus { color: #ff6a00; background: linear-gradient(90deg, #fff2 0%, #ffb34733 100%); box-shadow: 0 2px 12px #ffb34733, 0 2px 12px #00e0ff33; text-shadow: 0 2px 8px #00e0ff44; }
+    .nav-links li a:hover { color: #ff6a00; }
+    .navbar-actions { display: flex; align-items: center; gap: 1em; margin-left: 2em; }
+    .navbar-cta { background: linear-gradient(90deg, #ffb347 0%, #ff6a00 100%); color: #fff; border: none; border-radius: 30px; padding: 0.7em 2em; font-size: 1em; font-weight: bold; cursor: pointer; box-shadow: 0 2px 12px #ffb34733; transition: background 0.2s, transform 0.18s, box-shadow 0.18s; position: relative; overflow: hidden; }
+    .navbar-cta:hover { background: linear-gradient(90deg, #00e0ff 0%, #ff6a00 100%); color: #fff; transform: scale(1.06) translateY(-2px); box-shadow: 0 6px 24px #00e0ff33, 0 6px 24px #ff6a0033; }
+    .lang-select { background: #fff; color: #222; border-radius: 6px; border: none; padding: 0.3em 0.7em; font-size: 1em; }
+    /* HERO MODERNE ++ */
+    .hero {
+      position: relative;
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      background: linear-gradient(120deg, #ff6a00 0%, #ffb347 100%);
+      z-index: 1;
+    }
+    .hero-canvas {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at 60% 40%, rgba(255,255,255,0.18) 0%, transparent 70%),
+                  radial-gradient(circle at 30% 70%, rgba(255,255,255,0.10) 0%, transparent 80%);
+      z-index: 2;
+      pointer-events: none;
+      animation: heroLight 6s linear infinite alternate;
+    }
+    @keyframes heroLight {
+      0% { opacity: 0.7; }
+      100% { opacity: 1; }
+    }
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      padding: 2em 1em;
+      max-width: 700px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: fadeInHero 1.2s cubic-bezier(.77,0,.18,1) both;
+    }
+    @keyframes fadeInHero {
+      0% { opacity: 0; transform: translateY(40px) scale(0.98); }
+      100% { opacity: 1; transform: none; }
+    }
+    .hero h1 {
+      font-size: 2.8em;
+      margin-bottom: 0.5em;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: #fff;
+      opacity: 0;
+      animation: fadeInText 1.2s 0.2s cubic-bezier(.77,0,.18,1) forwards;
+      text-shadow: 0 4px 24px #222, 0 2px 8px #fff;
+      transition: color 0.5s, text-shadow 0.5s;
+    }
+    @keyframes fadeInText {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: none; }
+    }
+    .hero p {
+      font-size: 1.3em;
+      margin-bottom: 2em;
+      color: #fff;
+      text-shadow: 0 4px 24px #00e0ff, 0 2px 8px rgba(0,0,0,0.18);
+      opacity: 0;
+      animation: fadeInText 1.2s 0.5s cubic-bezier(.77,0,.18,1) forwards;
+    }
+    @keyframes fadeInText {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: none; }
+    }
+    .hero .btn-hero {
+      background: linear-gradient(90deg, #ffb347 0%, #ff6a00 100%);
+      color: #fff;
+      padding: 1em 2.5em;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.1em;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 24px rgba(255,106,0,0.12);
+      transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeInText 1.2s 0.9s cubic-bezier(.77,0,.18,1) forwards;
+    }
+    .hero .btn-hero::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 0;
+      height: 0;
+      background: radial-gradient(circle, #ffb34755 0%, transparent 80%);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.5s, height 0.5s;
+      z-index: 0;
+    }
+    .hero .btn-hero:hover {
+      background: linear-gradient(90deg, #00e0ff 0%, #ff6a00 100%);
+      color: #fff;
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 8px 32px rgba(255,106,0,0.18);
+    }
+    .hero .btn-hero:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    @media (max-width: 700px) {
+      .hero h1 { font-size: 2em; }
+      .hero-content { padding: 1.2em 0.2em; }
+    }
+    @media (max-width: 500px) {
+      .hero { min-height: 40vh; }
+      .hero h1 { font-size: 1.3em; }
+      .hero p { font-size: 1em; }
+    }
+    .section { max-width: 1100px; margin: 3em auto; background: #fff; border-radius: 16px; box-shadow: 0 2px 16px rgba(0,0,0,0.07); padding: 2em; }
+    .section-title { color: #ff6a00; font-size: 2em; margin-bottom: 1em; text-align: center; }
+    .models {
+      display: flex;
+      gap: 2em;
+      margin: 2em 0;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .model {
+      background: linear-gradient(135deg, #00e0ff 0%, #ffb347 100%);
+      border-radius: 20px;
+      box-shadow: 0 4px 32px rgba(0,224,255,0.10), 0 4px 32px rgba(255,106,0,0.10);
+      padding: 2.2em 1.5em 1.5em 1.5em;
+      min-width: 220px;
+      max-width: 320px;
+      flex: 1 1 220px;
+      text-align: center;
+      transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+      position: relative;
+      overflow: hidden;
+      border: 2.5px solid transparent;
+    }
+    .model:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 12px 48px #00e0ff44, 0 12px 48px #ff6a0044;
+      background: linear-gradient(135deg, #ffb347 0%, #00e0ff 100%);
+      border-image: linear-gradient(90deg, #ffb347 0%, #00e0ff 100%) 1;
+      z-index: 2;
+    }
+    .model-icon {
+      margin-bottom: 1em;
+      animation: iconFloat 2.5s ease-in-out infinite alternate;
+    }
+    .model h3 {
+      margin-top: 0;
+      margin-bottom: 0.7em;
+      font-size: 1.3em;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    .model-title-vitrine { color: #00e0ff; font-weight: bold; }
+    .model-title-ecom { color: #ff6a00; font-weight: bold; }
+    .model-title-surmesure { color: #ffb347; font-weight: bold; }
+    .model-list {
+      text-align: left;
+      margin: 1em 0 0 0;
+      padding-left: 1.2em;
+      color: #222;
+      font-size: 1.05em;
+      line-height: 1.7;
+    }
+    .model-list li {
+      margin-bottom: 0.3em;
+      position: relative;
+    }
+    .model-list li::before {
+      content: '◆';
+      color: #00e0ff;
+      font-weight: bold;
+      margin-right: 0.5em;
+      font-size: 1.1em;
+      position: relative;
+      top: 1px;
+    }
+    .model-ecom .model-list li::before { color: #ff6a00; }
+    .model-surmesure .model-list li::before { color: #ffb347; }
+    .products, .profiles { display: flex; gap: 2em; flex-wrap: wrap; justify-content: center; }
+    .product, .profile { background: #f7f7f7; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); padding: 1.5em; min-width: 180px; max-width: 260px; flex: 1 1 180px; text-align: center; }
+    .contact-form { max-width: 400px; margin: 0 auto; display: flex; flex-direction: column; gap: 1em; }
+    .contact-form input, .contact-form textarea { padding: 0.8em; border: 1px solid #ddd; border-radius: 8px; font-size: 1em; }
+    .contact-form button { background: #ff6a00; color: #fff; border: none; border-radius: 8px; padding: 0.8em; font-size: 1em; font-weight: bold; cursor: pointer; transition: background 0.2s; }
+    .contact-form button:hover { background: #222; }
+    footer { background: #222; color: #fff; text-align: center; padding: 2em 1em 1em 1em; margin-top: 3em; }
+    .service-cards {
+      display: flex;
+      gap: 2em;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2em;
+    }
+    .service-card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 2px 16px rgba(0,224,255,0.08), 0 2px 16px rgba(255,106,0,0.08);
+      padding: 2.5em 1.5em 2em 1.5em;
+      min-width: 240px;
+      max-width: 340px;
+      flex: 1 1 240px;
+      text-align: center;
+      transition: transform 0.18s, box-shadow 0.18s, border 0.18s;
+      border: 2.5px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card .badge {
+      position: absolute;
+      top: 1.2em;
+      right: 1.2em;
+      background: linear-gradient(90deg, #ffb347 0%, #ff6a00 100%);
+      color: #fff;
+      font-size: 0.85em;
+      font-weight: bold;
+      padding: 0.3em 1em;
+      border-radius: 20px;
+      box-shadow: 0 2px 8px rgba(255,106,0,0.13);
+      letter-spacing: 1px;
+      z-index: 2;
+      animation: badgePop 1.2s cubic-bezier(.77,0,.18,1);
+    }
+    @keyframes badgePop {
+      0% { transform: scale(0.5); opacity: 0; }
+      80% { transform: scale(1.15); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+    .service-icon {
+      margin-bottom: 1em;
+      animation: iconFloat 2.5s ease-in-out infinite alternate;
+    }
+    @keyframes iconFloat {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-10px) scale(1.07); }
+    }
+    .service-card h3 {
+      margin-top: 0;
+      margin-bottom: 0.7em;
+      font-size: 1.5em;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    .service-price {
+      font-size: 1.3em;
+      font-weight: bold;
+      color: #ff6a00;
+      margin: 1.2em 0 0.7em 0;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #ffb34744;
+    }
+    .service-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #ffb347 0%, #ff6a00 100%);
+      color: #fff;
+      padding: 0.7em 2em;
+      border-radius: 30px;
+      font-size: 1em;
+      font-weight: bold;
+      text-decoration: none;
+      margin-top: 0.5em;
+      box-shadow: 0 2px 12px rgba(255,106,0,0.10);
+      transition: background 0.2s, transform 0.18s, box-shadow 0.18s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-btn:hover {
+      background: linear-gradient(90deg, #00e0ff 0%, #ff6a00 100%);
+      color: #fff;
+      transform: scale(1.06) translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0,224,255,0.13), 0 6px 24px rgba(255,106,0,0.13);
+    }
+    .service-card.premium {
+      border-color: #ffb347;
+      box-shadow: 0 4px 32px rgba(255,179,71,0.13);
+    }
+    .service-card.normale {
+      border-color: #00e0ff;
+      box-shadow: 0 4px 32px rgba(0,224,255,0.13);
+    }
+    .service-card.base {
+      border-color: #ff6a00;
+      box-shadow: 0 4px 32px rgba(255,106,0,0.13);
+    }
+    .service-card:hover {
+      transform: translateY(-12px) scale(1.07);
+      box-shadow: 0 12px 48px rgba(0,224,255,0.18), 0 12px 48px rgba(255,106,0,0.18);
+      border-width: 3.5px;
+      z-index: 2;
+      border-image: linear-gradient(90deg, #ffb347 0%, #00e0ff 100%) 1;
+    }
+    @media (max-width: 900px) {
+      .service-cards { flex-direction: column; align-items: center; gap: 1.2em; }
+    }
+    @media (max-width: 900px) { .models, .products, .profiles { flex-direction: column; align-items: center; } .navbar { flex-direction: column; gap: 1em; } }
+    @media (max-width: 600px) { .hero { padding: 2em 1em 1.5em 1em; } .section { padding: 1em; } }
+    .service-list {
+      text-align: left;
+      margin: 1em 0 1.2em 0;
+      padding-left: 1.2em;
+      color: #222;
+      font-size: 1.05em;
+      line-height: 1.7;
+    }
+    .service-list li {
+      margin-bottom: 0.3em;
+      position: relative;
+    }
+    .service-list li::before {
+      content: '•';
+      color: #ff6a00;
+      font-weight: bold;
+      margin-right: 0.5em;
+      font-size: 1.2em;
+      position: relative;
+      top: 1px;
+    }
+    .products {
+      display: flex;
+      gap: 2em;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 2em 0;
+    }
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 2px 16px rgba(0,224,255,0.08), 0 2px 16px rgba(255,106,0,0.08);
+      overflow: hidden;
+      min-width: 220px;
+      max-width: 260px;
+      flex: 1 1 220px;
+      text-decoration: none;
+      color: #222;
+      transition: transform 0.18s, box-shadow 0.18s, border 0.18s;
+      border: 2.5px solid transparent;
+      position: relative;
+    }
+    .product-card:hover {
+      transform: translateY(-10px) scale(1.05) rotate(-1deg);
+      box-shadow: 0 12px 48px #00e0ff44, 0 12px 48px #ff6a0044;
+      border-image: linear-gradient(90deg, #ffb347 0%, #00e0ff 100%) 1;
+      z-index: 2;
+    }
+    .product-img {
+      width: 100%;
+      height: 160px;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.4s cubic-bezier(.77,0,.18,1);
+      border-bottom: 2px solid #ffb347;
+    }
+    .product-card:hover .product-img {
+      transform: scale(1.08) rotate(2deg);
+      border-bottom: 2px solid #00e0ff;
+      box-shadow: 0 8px 32px #00e0ff33;
+    }
+    .product-content {
+      padding: 1.2em 1em 1.5em 1em;
+      width: 100%;
+      text-align: center;
+    }
+    .product-content h4 {
+      margin: 0.5em 0 0.2em 0;
+      color: #ff6a00;
+      font-size: 1.15em;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    .product-content p {
+      margin: 0;
+      color: #222;
+      font-size: 1em;
+      opacity: 0.85;
+    }
+    @media (max-width: 900px) {
+      .products { flex-direction: column; align-items: center; gap: 1.2em; }
+    }
+    .profiles {
+      display: flex;
+      gap: 2em;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 2em 0;
+    }
+    .profile-card {
+      background: linear-gradient(135deg, #fff 60%, #00e0ff11 100%);
+      border-radius: 20px;
+      box-shadow: 0 2px 16px rgba(0,224,255,0.08), 0 2px 16px rgba(255,106,0,0.08);
+      overflow: hidden;
+      min-width: 220px;
+      max-width: 300px;
+      flex: 1 1 220px;
+      text-align: center;
+      transition: transform 0.18s, box-shadow 0.18s, border 0.18s;
+      border: 2.5px solid transparent;
+      position: relative;
+      padding-bottom: 1.5em;
+    }
+    .profile-card:hover {
+      transform: translateY(-10px) scale(1.05) rotate(-1deg);
+      box-shadow: 0 12px 48px #00e0ff44, 0 12px 48px #ff6a0044;
+      border-image: linear-gradient(90deg, #ffb347 0%, #00e0ff 100%) 1;
+      z-index: 2;
+    }
+    .profile-img {
+      width: 100px;
+      height: 100px;
+      margin: 2em auto 1em auto;
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+      border: 4px solid #ffb347;
+      box-shadow: 0 4px 24px #00e0ff33;
+      transition: transform 0.4s cubic-bezier(.77,0,.18,1), border 0.2s;
+    }
+    .profile-card:hover .profile-img {
+      transform: scale(1.12) rotate(3deg);
+      border: 4px solid #00e0ff;
+      box-shadow: 0 8px 32px #ff6a0033;
+    }
+    .profile-content {
+      padding: 0 1em;
+    }
+    .profile-content h4 {
+      margin: 0.5em 0 0.2em 0;
+      color: #ff6a00;
+      font-size: 1.15em;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    .profile-role {
+      color: #00e0ff;
+      font-size: 1em;
+      font-weight: bold;
+      margin-bottom: 0.7em;
+      letter-spacing: 1px;
+    }
+    .profile-content p {
+      margin: 0;
+      color: #222;
+      font-size: 1em;
+      opacity: 0.85;
+    }
+    @media (max-width: 900px) {
+      .profiles { flex-direction: column; align-items: center; gap: 1.2em; }
+    }
+    .section#contact {
+      background: linear-gradient(120deg, #ffb34711 0%, #00e0ff11 100%);
+      animation: fadeInContact 1.2s cubic-bezier(.77,0,.18,1);
+      border-radius: 24px;
+      box-shadow: 0 4px 32px #00e0ff11, 0 4px 32px #ff6a0011;
+    }
+    @keyframes fadeInContact {
+      0% { opacity: 0; transform: translateY(40px) scale(0.98); }
+      100% { opacity: 1; transform: none; }
+    }
+    .contact-flex {
+      display: flex;
+      gap: 2em;
+      align-items: flex-start;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .contact-form {
+      max-width: 400px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 16px #00e0ff11;
+      padding: 2em 1.5em;
+      animation: fadeInContact 1.2s 0.2s cubic-bezier(.77,0,.18,1) both;
+    }
+    .contact-btn {
+      background: linear-gradient(90deg, #ffb347 0%, #ff6a00 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 0.8em;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 12px #ffb34733;
+      transition: background 0.2s, transform 0.18s, box-shadow 0.18s;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-btn:hover {
+      background: linear-gradient(90deg, #00e0ff 0%, #ff6a00 100%);
+      color: #fff;
+      transform: scale(1.06) translateY(-2px);
+      box-shadow: 0 6px 24px #00e0ff33, 0 6px 24px #ff6a0033;
+    }
+    .contact-socials {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2em;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1em;
+      animation: fadeInContact 1.2s 0.5s cubic-bezier(.77,0,.18,1) both;
+    }
+    .social-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 2px 12px #00e0ff22;
+      transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+      margin-bottom: 0.2em;
+      font-size: 1.3em;
+      border: 2px solid transparent;
+    }
+    .social-icon.insta:hover {
+      background: linear-gradient(135deg, #ffb347 0%, #ff6a00 100%);
+      box-shadow: 0 6px 24px #ffb34744;
+      border-color: #ff6a00;
+      transform: scale(1.13) rotate(-4deg);
+    }
+    .social-icon.fb:hover {
+      background: linear-gradient(135deg, #00e0ff 0%, #00b4d8 100%);
+      box-shadow: 0 6px 24px #00e0ff44;
+      border-color: #00e0ff;
+      transform: scale(1.13) rotate(4deg);
+    }
+    .social-icon.wa:hover {
+      background: linear-gradient(135deg, #25d366 0%, #00e0ff 100%);
+      box-shadow: 0 6px 24px #25d36644;
+      border-color: #25d366;
+      transform: scale(1.13) rotate(-2deg);
+    }
+    @media (max-width: 900px) {
+      .contact-flex { flex-direction: column; align-items: center; gap: 1.2em; }
+      .contact-socials { flex-direction: row; gap: 1.2em; margin-top: 2em; }
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1em 2em;
+      position: sticky;
+      top: 0;
+      background: #222;
+      z-index: 100;
+      box-shadow: 0 2px 16px #0002;
+      min-height: 64px;
+    }
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 44px;
+      height: 44px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 9999;
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      transition: transform 0.3s;
+      pointer-events: auto;
+    }
+    .nav-toggle .bar {
+      width: 28px;
+      height: 4px;
+      background: #ff6a00;
+      margin: 3px 0;
+      border-radius: 2px;
+      transition: 0.4s cubic-bezier(.77,0,.18,1);
+      display: block;
+      position: relative;
+    }
+    .nav-toggle.open .bar:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+      background: #00e0ff;
+    }
+    .nav-toggle.open .bar:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0.5);
+    }
+    .nav-toggle.open .bar:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+      background: #ff6a00;
+    }
+    .nav-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(20,20,30,0.65);
+      z-index: 120;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    .nav-overlay.open {
+      display: block;
+      opacity: 1;
+      pointer-events: auto;
+    }
+    @media (max-width: 900px) {
+      .nav-toggle {
+        display: flex;
+        position: fixed;
+        top: 18px;
+        right: 18px;
+        background: #fff;
+        border-radius: 50%;
+        box-shadow: 0 2px 12px #2222;
+        width: 48px;
+        height: 48px;
+        justify-content: center;
+        align-items: center;
+        z-index: 210;
+      }
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 80vw;
+        max-width: 340px;
+        background: linear-gradient(120deg, #222 80%, #00e0ff33 100%);
+        backdrop-filter: blur(12px) saturate(1.2);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        padding: 2.5em 0 2em 0;
+        margin: 0;
+        border-radius: 0 0 0 18px;
+        box-shadow: -8px 0 32px #00000022;
+        transform: translateX(100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.35s cubic-bezier(.77,0,.18,1);
+        z-index: 200;
+        min-height: 100vh;
+      }
+      .nav-links.open {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateX(0);
+      }
+      .nav-overlay.open {
+        display: block;
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .nav-links li {
+        width: 100%;
+        padding: 0.7em 1.5em;
+      }
+      .nav-links li a {
+        width: 100%;
+        display: block;
+        padding: 0.7em 0;
+        color: #fff;
+        border-radius: 8px;
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      }
+      .nav-links li a:hover {
+        background: linear-gradient(90deg, #ffb34733 0%, #00e0ff33 100%);
+        color: #ff6a00;
+        box-shadow: 0 2px 12px #ffb34733, 0 2px 12px #00e0ff33;
+      }
+      .lang-select {
+        margin-top: 0.7em;
+        margin-left: 1.5em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <span class="logo">WebPro<span style="color:#fff;">Agency</span></span>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home">Accueil</a></li>
+        <li><a href="#services">Nos services</a></li>
+        <li><a href="#models">Modèles</a></li>
+        <li><a href="#products">Nos produits</a></li>
+        <li><a href="#profiles">Nos profils</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <button class="navbar-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Demander un devis</button>
+        <select class="lang-select" id="lang-select">
+          <option value="fr">FR</option>
+          <option value="en">EN</option>
+          <option value="ar">AR</option>
+        </select>
+      </div>
+    </nav>
+  </header>
+  <section class="hero" id="home">
+    <canvas class="hero-canvas"></canvas>
+    <div class="hero-content">
+      <h1>Bienvenue dans notre site web</h1>
+      <p>Nous créons des sites web modernes, performants et adaptés à votre activité.<br>Découvrez notre travail et nos solutions sur-mesure !</p>
+      <a href="#services" class="btn-hero">Découvrir nos services</a>
+    </div>
+  </section>
+  <section class="section" id="services">
+    <h2 class="section-title">Nos services</h2>
+    <div class="service-cards">
+      <div class="service-card premium">
+        <span class="badge">Populaire</span>
+        <div class="service-icon">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="#ffb347" opacity="0.18"/><path d="M24 12L28 22H38L30 28L34 38L24 32L14 38L18 28L10 22H20L24 12Z" fill="#ffb347" stroke="#ff6a00" stroke-width="2"/></svg>
+        </div>
+        <h3>Premium</h3>
+        <ul class="service-list">
+          <li>Site sur-mesure</li>
+          <li>Design unique</li>
+          <li>Fonctionnalités avancées</li>
+          <li>Accompagnement complet</li>
+          <li>Support prioritaire</li>
+        </ul>
+        <div class="service-price">20 000 DA</div>
+        <a href="#contact" class="service-btn">Choisir Premium</a>
+      </div>
+      <div class="service-card normale">
+        <div class="service-icon">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="8" y="8" width="32" height="32" rx="8" fill="#00e0ff" opacity="0.18"/><rect x="14" y="14" width="20" height="20" rx="5" fill="#00e0ff" stroke="#00b4d8" stroke-width="2"/></svg>
+        </div>
+        <h3>Normale</h3>
+        <ul class="service-list">
+          <li>Site professionnel</li>
+          <li>Design moderne</li>
+          <li>Fonctionnalités standards</li>
+          <li>Support classique</li>
+        </ul>
+        <div class="service-price">12 000 DA</div>
+        <a href="#contact" class="service-btn">Choisir Normale</a>
+      </div>
+      <div class="service-card base">
+        <div class="service-icon">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="12" y="20" width="24" height="16" rx="6" fill="#ff6a00" opacity="0.18"/><rect x="16" y="24" width="16" height="8" rx="3" fill="#ff6a00" stroke="#ffb347" stroke-width="2"/></svg>
+        </div>
+        <h3>Base</h3>
+        <ul class="service-list">
+          <li>Site simple</li>
+          <li>Rapide à mettre en ligne</li>
+          <li>Idéal pour débuter</li>
+          <li>Parfait pour présenter une activité</li>
+        </ul>
+        <div class="service-price">79 000 DA</div>
+        <a href="#contact" class="service-btn">Choisir Base</a>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="models">
+    <h2 class="section-title">3 modèles de nos sites web</h2>
+    <div class="models">
+      <div class="model model-vitrine">
+        <div class="model-icon">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="4" y="10" width="36" height="24" rx="6" fill="#00e0ff" opacity="0.18"/><rect x="8" y="14" width="28" height="16" rx="4" fill="#00e0ff" stroke="#00b4d8" stroke-width="2"/></svg>
+        </div>
+        <h3>Modèle <span class="model-title-vitrine">Vitrine</span></h3>
+        <ul class="model-list">
+          <li>Présentez votre activité</li>
+          <li>Pages élégantes et animées</li>
+          <li>Contact rapide</li>
+        </ul>
+      </div>
+      <div class="model model-ecom">
+        <div class="model-icon">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="18" fill="#ff6a00" opacity="0.18"/><path d="M12 32L32 32L30 18H14L12 32Z" fill="#ff6a00" stroke="#ffb347" stroke-width="2"/><circle cx="17" cy="36" r="2" fill="#ff6a00"/><circle cx="27" cy="36" r="2" fill="#ff6a00"/></svg>
+        </div>
+        <h3>Modèle <span class="model-title-ecom">E-commerce</span></h3>
+        <ul class="model-list">
+          <li>Boutique en ligne moderne</li>
+          <li>Paiement sécurisé</li>
+          <li>Gestion facile des produits</li>
+        </ul>
+      </div>
+      <div class="model model-surmesure">
+        <div class="model-icon">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="8" y="8" width="28" height="28" rx="8" fill="#ffb347" opacity="0.18"/><rect x="12" y="12" width="20" height="20" rx="5" fill="#fff" stroke="#ff6a00" stroke-width="2"/><path d="M16 28L28 16" stroke="#ff6a00" stroke-width="2"/></svg>
+        </div>
+        <h3>Modèle <span class="model-title-surmesure">Sur-mesure</span></h3>
+        <ul class="model-list">
+          <li>Fonctionnalités personnalisées</li>
+          <li>Design unique</li>
+          <li>Accompagnement expert</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="products">
+    <h2 class="section-title">Nos produits</h2>
+    <div class="products">
+      <a class="product-card" href="#" target="_blank">
+        <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=400&q=80');"></div>
+        <div class="product-content">
+          <h4>Landing Page</h4>
+          <p>Pour booster vos conversions.</p>
+        </div>
+      </a>
+      <a class="product-card" href="#" target="_blank">
+        <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80');"></div>
+        <div class="product-content">
+          <h4>Blog Pro</h4>
+          <p>Pour partager votre expertise.</p>
+        </div>
+      </a>
+      <a class="product-card" href="#" target="_blank">
+        <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80');"></div>
+        <div class="product-content">
+          <h4>Catalogue en ligne</h4>
+          <p>Pour exposer vos produits/services.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+  <section class="section" id="profiles">
+    <h2 class="section-title">Nos profils</h2>
+    <div class="profiles">
+      <div class="profile-card">
+        <div class="profile-img" style="background-image:url('https://randomuser.me/api/portraits/men/32.jpg');"></div>
+        <div class="profile-content">
+          <h4>Mohamed Menai</h4>
+          <div class="profile-role">Créateur de sites web, IT Guy, Programmeur</div>
+          <p>Passionné par le développement web, Mohamed conçoit des solutions digitales innovantes et performantes pour tous types d'entreprises.</p>
+        </div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-img" style="background-image:url('https://randomuser.me/api/portraits/men/85.jpg');"></div>
+        <div class="profile-content">
+          <h4>Walid</h4>
+          <div class="profile-role">Designer, Créateur de contenu</div>
+          <p>Expert en design graphique et création de contenu, Walid sublime chaque projet avec créativité et sens du détail.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="contact">
+    <h2 class="section-title">Contactez-nous</h2>
+    <div class="contact-flex">
+      <form class="contact-form">
+        <input type="text" placeholder="Votre nom" required>
+        <input type="email" placeholder="Votre email" required>
+        <textarea placeholder="Votre message" rows="4" required></textarea>
+        <button type="submit" class="contact-btn">Envoyer</button>
+      </form>
+      <div class="contact-socials">
+        <a href="https://instagram.com/" target="_blank" class="social-icon insta" title="Instagram">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect x="4" y="4" width="28" height="28" rx="8" fill="#fff"/><rect x="4" y="4" width="28" height="28" rx="8" stroke="#ff6a00" stroke-width="2"/><circle cx="18" cy="18" r="7" stroke="#ff6a00" stroke-width="2"/><circle cx="25.5" cy="10.5" r="1.5" fill="#ff6a00"/></svg>
+        </a>
+        <a href="https://facebook.com/" target="_blank" class="social-icon fb" title="Facebook">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect x="4" y="4" width="28" height="28" rx="8" fill="#fff"/><rect x="4" y="4" width="28" height="28" rx="8" stroke="#00e0ff" stroke-width="2"/><path d="M20 28V19.5H22.5L23 16.5H20V15C20 14.17 20.17 13.5 21.5 13.5H23V11C22.83 11 21.67 11 20.5 11C18.5 11 17 12.17 17 14.5V16.5H15V19.5H17V28H20Z" fill="#00e0ff"/></svg>
+        </a>
+        <a href="https://wa.me/213000000000" target="_blank" class="social-icon wa" title="WhatsApp">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect x="4" y="4" width="28" height="28" rx="8" fill="#fff"/><rect x="4" y="4" width="28" height="28" rx="8" stroke="#25d366" stroke-width="2"/><path d="M18 12C15.24 12 13 14.24 13 17C13 18.13 13.47 19.16 14.24 19.93L13 24L17.07 22.76C17.84 23.53 18.87 24 20 24C22.76 24 25 21.76 25 19C25 16.24 22.76 14 20 14C19.13 14 18.31 14.31 17.66 14.83L17 15.5L18.5 17L19.17 16.34C19.69 15.69 20 14.87 20 14C20 13.17 19.83 12.5 18 12Z" fill="#25d366"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <p>&copy; 2024 WebProAgency. Tous droits réservés.</p>
+  </footer>
+  <script>
+    // Traductions multilingues
+    const translations = {
+      fr: {
+        nav: ["Accueil", "Nos services", "Modèles", "Nos produits", "Nos profils", "Contact"],
+        hero_title: "Bienvenue dans notre site web",
+        hero_desc: "Nous créons des sites web modernes, performants et adaptés à votre activité.<br>Découvrez notre travail et nos solutions sur-mesure !",
+        services: "Nos services",
+        models: "3 modèles de nos sites web",
+        products: "Nos produits",
+        profiles: "Nos profils",
+        contact: "Contactez-nous",
+        contact_btn: "Envoyer"
+      },
+      en: {
+        nav: ["Home", "Our Services", "Models", "Our Products", "Our Team", "Contact"],
+        hero_title: "Welcome to our website",
+        hero_desc: "We create modern, high-performance websites tailored to your business.<br>Discover our work and custom solutions!",
+        services: "Our Services",
+        models: "3 Types of Our Websites",
+        products: "Our Products",
+        profiles: "Our Team",
+        contact: "Contact Us",
+        contact_btn: "Send"
+      },
+      ar: {
+        nav: ["الرئيسية", "خدماتنا", "النماذج", "منتجاتنا", "فريقنا", "اتصل بنا"],
+        hero_title: "مرحبًا بكم في موقعنا",
+        hero_desc: "نصمم مواقع إلكترونية عصرية وفعالة تناسب نشاطك.<br>اكتشف أعمالنا وحلولنا المخصصة!",
+        services: "خدماتنا",
+        models: "3 نماذج من مواقعنا",
+        products: "منتجاتنا",
+        profiles: "فريقنا",
+        contact: "اتصل بنا",
+        contact_btn: "إرسال"
+      }
+    };
+    function setLang(lang) {
+      // Navbar
+      document.querySelectorAll('.nav-links li a').forEach((a, i) => {
+        a.innerHTML = translations[lang].nav[i];
+      });
+      // Hero
+      document.querySelector('.hero h1').innerHTML = translations[lang].hero_title;
+      document.querySelector('.hero p').innerHTML = translations[lang].hero_desc;
+      // Couleur du h1 : blanc pur
+      const h1 = document.querySelector('.hero h1');
+      h1.style.color = '#fff';
+      h1.style.textShadow = '0 4px 24px #222, 0 2px 8px #fff';
+      h1.style.background = 'none';
+      h1.style.webkitBackgroundClip = 'border-box';
+      h1.style.webkitTextFillColor = '#fff';
+      h1.style.backgroundClip = 'border-box';
+      h1.style.animation = 'fadeInText 1.2s 0.2s cubic-bezier(.77,0,.18,1) forwards';
+      // Sections
+      document.querySelector('.section-title[for-services]')?.innerHTML = translations[lang].services;
+      document.querySelector('.section-title[for-models]')?.innerHTML = translations[lang].models;
+      document.querySelector('.section-title[for-products]')?.innerHTML = translations[lang].products;
+      document.querySelector('.section-title[for-profiles]')?.innerHTML = translations[lang].profiles;
+      document.querySelector('.section-title[for-contact]')?.innerHTML = translations[lang].contact;
+      // Contact btn
+      document.querySelector('.contact-btn').innerHTML = translations[lang].contact_btn;
+      // RTL pour arabe
+      if(lang === 'ar') {
+        document.body.dir = 'rtl';
+        document.body.style.fontFamily = "'Cairo', 'Segoe UI', Arial, sans-serif";
+      } else {
+        document.body.dir = 'ltr';
+        document.body.style.fontFamily = "'Segoe UI', Arial, sans-serif";
+      }
+    }
+    // Ajoute des attributs pour cibler les titres de section
+    document.querySelector('.section-title').setAttribute('for-services', '');
+    document.querySelectorAll('.section-title')[1].setAttribute('for-models', '');
+    document.querySelectorAll('.section-title')[2].setAttribute('for-products', '');
+    document.querySelectorAll('.section-title')[3].setAttribute('for-profiles', '');
+    document.querySelectorAll('.section-title')[4].setAttribute('for-contact', '');
+    // Sélecteur de langue
+    document.getElementById('lang-select').addEventListener('change', function() {
+      setLang(this.value);
+    });
+    // Langue par défaut
+    setLang(document.getElementById('lang-select').value);
+    // Effet particules animées dans le hero
+    const canvas = document.querySelector('.hero-canvas');
+    if(canvas) {
+      const ctx = canvas.getContext('2d');
+      let w, h, particles;
+      function resize() {
+        w = canvas.width = canvas.offsetWidth;
+        h = canvas.height = canvas.offsetHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+      function createParticles() {
+        particles = [];
+        for(let i=0; i<36; i++) {
+          particles.push({
+            x: Math.random()*w,
+            y: Math.random()*h,
+            r: 1.5+Math.random()*2.5,
+            dx: -0.5+Math.random(),
+            dy: -0.5+Math.random(),
+            alpha: 0.3+Math.random()*0.5
+          });
+        }
+      }
+      createParticles();
+      function animate() {
+        ctx.clearRect(0,0,w,h);
+        for(const p of particles) {
+          ctx.globalAlpha = p.alpha;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, 2*Math.PI);
+          ctx.fillStyle = '#fff';
+          ctx.shadowColor = '#fff';
+          ctx.shadowBlur = 12;
+          ctx.fill();
+          p.x += p.dx;
+          p.y += p.dy;
+          if(p.x<0||p.x>w) p.dx*=-1;
+          if(p.y<0||p.y>h) p.dy*=-1;
+        }
+        ctx.globalAlpha = 1;
+        requestAnimationFrame(animate);
+      }
+      animate();
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      // MENU HAMBURGER ULTRA-FIABLE AVEC LOGS
+      // JS hamburger supprimé
+    });
+  </script>
+</body>
+</html> 
